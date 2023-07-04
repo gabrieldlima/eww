@@ -1,0 +1,12 @@
+(defwindow bar
+    :monitor 0
+    :windowtype "dock"
+    :stacking "bg"
+    :exclusive true
+    :geometry (geometry :x "0%"
+                        :y "10px"
+                        :width "99%"
+                        :height "30px"
+                        :anchor "top center")
+    :reserve (struts :side "top" :distance "4%")
+    "NixOS")

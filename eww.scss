@@ -1,0 +1,12 @@
+// Unsets everything so you can style everything from scratch
+* {
+    all: unset;
+}
+
+// Global Styles
+.bar {
+    background-color: #11111b;
+    color: #cdd6f4;
+    padding: 10px;
+    border-radius: 10px;
+}
