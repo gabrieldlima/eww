@@ -1,7 +1,13 @@
+(deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
+
+(defwidget window_title []
+    (box
+        (label :text "${window}")))
+
 (defwindow bar
     :monitor 0
     :windowtype "dock"
-    :stacking "bg"
+    :stacking "Bg"
     :exclusive true
     :geometry (geometry :x "0%"
                         :y "10px"
@@ -9,4 +15,4 @@
                         :height "30px"
                         :anchor "top center")
     :reserve (struts :side "top" :distance "4%")
-    "NixOS")
+    (window_title))
