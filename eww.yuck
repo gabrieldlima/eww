@@ -1,13 +1,60 @@
+;; ----------------------------------------------------------------------------
+;; Variables
+;; ----------------------------------------------------------------------------
 (deflisten window :initial "..." "sh ~/.config/eww/scripts/get-window-title")
 
+
+;; ----------------------------------------------------------------------------
+;; Widgets
+;; ----------------------------------------------------------------------------
+(defwidget nixos_logo []
+    (box :class "nixos_logo"
+         :space-evenly false
+        (image :path "${EWW_CONFIG_DIR}/nixos.png"
+               :image-width 24
+               :image-height 24)))
+
 (defwidget window_title []
-    (box
+    (box :class "window_title"
+         :space-evenly false
         (label :text "${window}")))
+
+
+;; ----------------------------------------------------------------------------
+;; Windows
+;; ----------------------------------------------------------------------------
+(defwidget left_box []
+    (box :class "left_box"
+         :orientation "horizontal"
+         :space-evenly false
+         :halign "start"
+    (nixos_logo)))
+
+(defwidget center_box []
+    (box :class "center_box"
+         :orientation "horizontal"
+         :space-evenly false
+         :halign "center"
+    (window_title)))
+
+(defwidget right_box []
+    (box :class "right_box"
+         :orientation "horizontal"
+         :space-evenly false
+         :halign "end"
+    (label :text ""))) ;; TODO: define the right widgets
+
+(defwidget eww_bar []
+    (box :class "eww_bar"
+         :orientation "horizontal"
+    (left_box)
+    (center_box)
+    (right_box)))
 
 (defwindow bar
     :monitor 0
     :windowtype "dock"
-    :stacking "Bg"
+    :stacking "bg"
     :exclusive true
     :geometry (geometry :x "0%"
                         :y "10px"
@@ -15,4 +62,4 @@
                         :height "30px"
                         :anchor "top center")
     :reserve (struts :side "top" :distance "4%")
-    (window_title))
+    (eww_bar))
