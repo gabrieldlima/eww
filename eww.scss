@@ -5,6 +5,7 @@
 
 // Global Styles
 .bar {
+    font-family: 'FiraCode Nerd Font';
     background-color: #11111b;
     color: #cdd6f4;
     padding: 10px;
@@ -14,4 +15,13 @@
 .nixos_logo {
     padding: 5px;
     border-radius: 10px;
+}
+
+.workspaces {
+    font-family: 'Noto Sans CJK JP';
+    font-size: 15px;
+    margin-bottom: 2px;
+    margin-top: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
 }

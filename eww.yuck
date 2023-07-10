@@ -7,28 +7,13 @@
 ;; ----------------------------------------------------------------------------
 ;; Widgets
 ;; ----------------------------------------------------------------------------
-(defwidget nixos_logo []
-    (box :class "nixos_logo"
-         :space-evenly false
-        (image :path "${EWW_CONFIG_DIR}/nixos.png"
-               :image-width 24
-               :image-height 24)))
-
-(defwidget window_title []
-    (box :class "window_title"
-         :space-evenly false
-        (label :text "${window}")))
-
-
-;; ----------------------------------------------------------------------------
-;; Windows
-;; ----------------------------------------------------------------------------
 (defwidget left_box []
     (box :class "left_box"
          :orientation "horizontal"
          :space-evenly false
          :halign "start"
-    (nixos_logo)))
+    (nixos_logo)
+    (workspaces)))
 
 (defwidget center_box []
     (box :class "center_box"
@@ -51,6 +36,28 @@
     (center_box)
     (right_box)))
 
+(defwidget nixos_logo []
+    (box :class "nixos_logo"
+         :space-evenly false
+        (image :path "${EWW_CONFIG_DIR}/nixos.png"
+               :image-width 24
+               :image-height 24)))
+
+(defwidget workspaces []
+    (box :class "workspaces"
+         :space-evenly false
+        (label :text "一 二 三 四 五 六 七 八 九 〇")))
+
+(defwidget window_title []
+    (box :class "window_title"
+         :space-evenly false
+        (label :text "${window}"
+               :limit-width 50)))
+
+
+;; ----------------------------------------------------------------------------
+;; EWW
+;; ----------------------------------------------------------------------------
 (defwindow bar
     :monitor 0
     :windowtype "dock"
