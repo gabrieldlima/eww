@@ -18,10 +18,27 @@
 }
 
 .workspaces {
-    font-family: 'Noto Sans CJK JP';
+    padding: 5px;
     font-size: 15px;
-    margin-bottom: 2px;
-    margin-top: 1px;
-    margin-left: 5px;
-    margin-right: 5px;
+
+    &.current * {
+        font-size: 15;
+        color: #89b4fa;
+    }
+
+    &.occupied {
+        font-size: 10;
+        color: #b4befe;
+    }
+
+    &.empty {
+        font-size: 10;
+        color: #313244;
+    }
+}
+
+.window_title {
+    font-size: 12;
+    font-weight: bold;
+    color: #cdd6f4;
 }
