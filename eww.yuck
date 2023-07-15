@@ -1,9 +1,13 @@
 ;; ----------------------------------------------------------------------------
 ;; Variables
 ;; ----------------------------------------------------------------------------
-(deflisten window :initial "NixOS" "bash ~/.config/eww/scripts/get-window-title")
-(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces")
-(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace")
+(deflisten window :initial "NixOS" "bash ~/.config/eww/scripts/get-window-title.sh")
+(deflisten workspaces :initial "[]" "bash ~/.config/eww/scripts/get-workspaces.sh")
+(deflisten current_workspace :initial "1" "bash ~/.config/eww/scripts/get-active-workspace.sh")
+
+(defpoll time :interval "60s" "date '+%I:%M %p'")
+(defpoll date :interval "60s" "date '+%a %b %d'")
+(defvar rev false)
 
 
 ;; ----------------------------------------------------------------------------
@@ -29,7 +33,7 @@
          :orientation "horizontal"
          :space-evenly false
          :halign "end"
-    (label :text ""))) ;; TODO: define the right widgets
+    (datetime)))
 
 (defwidget eww_bar []
     (box :class "eww_bar"
@@ -59,6 +63,40 @@
         (label :text "${window}"
                :limit-width 50)))
 
+(defwidget datetime []
+    (eventbox :onhover "eww update rev=true"
+              :onhoverlost "eww update rev=false"
+              :cursor "pointer"
+        (box :class "datetime"
+             :orientation "horizontal"
+             :space-evenly false
+             :spacing "3"
+            (label :class "time"
+                   :text "${time}")
+                (revealer :transition "slideleft"
+                          :reveal rev
+                          (button :class "date"
+                                  :onclick "${EWW_CONFIG_DIR}/scripts/calendar.sh" "${date}")))))
+
+(defwidget cal []
+    (box :orientation "vertical"
+         :class "calendar"
+         (calendar :class "calendar_in"
+                   :day "date '+%d'"
+                   :month "date '+%m'"
+                   :year "date '+%Y'")))
+
+(defwindow calendar
+    :monitor 0
+    :windowtype "dock"
+    :stacking "fg"
+    :exclusive true
+    :geometry (geometry :x "10px"
+                        :y "5px"
+                        :width "270px"
+                        :height "60px"
+                        :anchor "top right")
+    (cal))
 
 ;; ----------------------------------------------------------------------------
 ;; EWW
