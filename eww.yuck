@@ -45,7 +45,7 @@
 (defwidget nixos_logo []
     (box :class "nixos_logo"
          :space-evenly false
-        (image :path "${EWW_CONFIG_DIR}/nixos.png"
+        (image :path "${EWW_CONFIG_DIR}/assets/nixos.png"
                :image-width 24
                :image-height 24)))
 
