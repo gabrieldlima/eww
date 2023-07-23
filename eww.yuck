@@ -1,5 +1,5 @@
 ;; ----------------------------------------------------------------------------
-;; Variables
+;; variables
 ;; ----------------------------------------------------------------------------
 (defvar eww-bin "/home/gabriel/.local/src/eww/target/release/eww")
 (defvar rev false)
@@ -13,8 +13,9 @@
 
 
 ;; ----------------------------------------------------------------------------
-;; Widgets
+;; base structures for widgets
 ;; ----------------------------------------------------------------------------
+;; left modules
 (defwidget left_box []
     (box :class "left_box"
          :orientation "horizontal"
@@ -23,6 +24,7 @@
     (nixos_logo)
     (workspaces)))
 
+;; center modules
 (defwidget center_box []
     (box :class "center_box"
          :orientation "horizontal"
@@ -30,6 +32,7 @@
          :halign "center"
     (window_title)))
 
+;; right modules
 (defwidget right_box []
     (box :class "right_box"
          :orientation "horizontal"
@@ -37,6 +40,7 @@
          :halign "end"
     (datetime)))
 
+;; eww bar
 (defwidget eww_bar []
     (box :class "eww_bar"
          :orientation "horizontal"
@@ -44,6 +48,11 @@
     (center_box)
     (right_box)))
 
+
+;; ----------------------------------------------------------------------------
+;; widgets
+;; ----------------------------------------------------------------------------
+;; image box with a image
 (defwidget nixos_logo []
     (box :class "nixos_logo"
          :space-evenly false
@@ -51,6 +60,7 @@
                :image-width 24
                :image-height 24)))
 
+;; hyprland workspaces
 (defwidget workspaces []
         (box :space-evenly true
             (label :text "${workspaces}${current_workspace}" :visible false)
@@ -59,12 +69,14 @@
                     (box :class "workspaces ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
                         (label :text "${workspace.id == current_workspace ? "" : ""}"))))))
 
+;; hyprland window title
 (defwidget window_title []
     (box :class "window_title"
          :space-evenly false
         (label :text "${window}"
                :limit-width 50)))
 
+;; date/clock widget
 (defwidget datetime []
     (eventbox :onhover "${eww-bin} update rev=true"
               :onhoverlost "${eww-bin} update rev=false"
@@ -80,6 +92,7 @@
                           (button :class "date"
                                   :onclick "${EWW_CONFIG_DIR}/scripts/calendar.sh" "${date}")))))
 
+;; calendar widget
 (defwidget cal []
     (box :orientation "vertical"
          :class "calendar"
@@ -88,6 +101,7 @@
                    :month "date '+%m'"
                    :year "date '+%Y'")))
 
+;; calendar window
 (defwindow calendar
     :monitor 0
     :windowtype "dock"
@@ -100,8 +114,9 @@
                         :anchor "top right")
     (cal))
 
+
 ;; ----------------------------------------------------------------------------
-;; EWW
+;; main window
 ;; ----------------------------------------------------------------------------
 (defwindow bar
     :monitor 0
