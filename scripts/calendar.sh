@@ -1,7 +1,7 @@
 #!/bin/sh
 
 LOCK="$HOME/.cache/eww-calendar.lock"
-EWW="$HOME/.local/src/eww/target/release/eww"
+EWW="$HOME/.local/bin/eww"
 
 open() {
     $EWW close calendar

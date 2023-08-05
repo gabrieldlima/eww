@@ -1,7 +1,7 @@
 ;; ----------------------------------------------------------------------------
 ;; variables
 ;; ----------------------------------------------------------------------------
-(defvar eww-bin "/home/gabriel/.local/src/eww/target/release/eww")
+(defvar eww-bin "/home/gabriel/.local/bin/eww")
 (defvar rev false)
 
 (deflisten window :initial "NixOS" "bash ~/.config/eww/scripts/get-window-title.sh")
