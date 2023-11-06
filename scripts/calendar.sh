@@ -1,15 +1,14 @@
 #!/bin/sh
 
 LOCK="$HOME/.cache/eww-calendar.lock"
-EWW="$HOME/.local/bin/eww"
 
 open() {
-    $EWW close calendar
+    eww close calendar
     rm $LOCK
 }
 
 close() {
-    $EWW open calendar
+    eww open calendar
     touch $LOCK
 }
 
